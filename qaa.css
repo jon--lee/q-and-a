@@ -1,0 +1,46 @@
+textarea#questionText, textarea#answerText {
+	margin: 0 auto;
+	width: 75%;
+	display: block;
+	max-width: 100%;
+	font-size: 1.25em;
+	padding: 20px;
+	resize:vertical;
+}
+
+.questionToAnswer {
+	margin: 0 auto;
+	width: 75%;
+	display: block;
+	max-width: 100%;
+	font-size: 1.25em;
+	padding: 20px;
+}
+
+a#submitQuestion,a#submitAnswer {
+	margin-left: 37.8%;
+	margin-top: 20px;
+	margin-right: 10px;
+}
+
+.qandas {
+	max-height:110px;
+	overflow-y:scroll;
+	margin-bottom:10px;
+}
+
+.qandas .quest {
+	min-height: 50px;
+	margin: 10px 0px;
+	padding:5px;
+	border-radius:3px;
+	background:white;
+}
+
+.qandas .quest .avatar {
+	margin: 0px 5px;
+}
+
+.questContent span {
+	cursor:pointer;
+}
