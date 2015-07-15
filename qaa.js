@@ -29,6 +29,7 @@ jQuery(document).ready(function(){
 			var message_id = jQuery("#message_id").val();
 			jQuery('#answerText').val('');
 			jQuery.post(plugindir+'/q-and-a/answer.php', {text:text,message_id:message_id}, function(data){
+				location.reload();
 			});
 		}
 	});

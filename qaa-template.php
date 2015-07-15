@@ -53,14 +53,6 @@ if($message_id){
 $campaign_id = get_the_ID();
 $answered_questions_count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."questionandanswer WHERE campaign_id='$campaign_id' AND answered='1'");
 
-// goal is to be able to handle the post request
-// once the post request is verified, we can show a
-// modal where the user can answer the question
-/*if $_POST['question']
-{
-	displayModal()
-	echo "<script>ondocumentload: open modal</script>"
-}*/
 
 ?>
 
