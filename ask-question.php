@@ -31,7 +31,7 @@ global $wpdb;
 
 $id = $wpdb->get_var( "SELECT id FROM ".$wpdb->prefix."bp_messages_messages WHERE thread_id='$bp_id' ORDER BY id ASC LIMIT 1");
 
-$content_with_link = $content."\n\n<a style='color:blue' href='$camp_url?message_id=$id'>Answer the question</a>";
+$content_with_link = $content."\n\n<a style='color:blue' href='$camp_url?message_id=$id'>Answer The Question Publicly</a>";
 
 $wpdb->update($wpdb->prefix . 'bp_messages_messages',
 	array(
@@ -50,4 +50,14 @@ $wpdb->insert($wpdb->prefix . 'questionandanswer',
 		'message_id' => $id
 	)
 );
+
+if ($bp_id) {
+	echo 1;
+} else {
+	echo 0;
+}
+
+
 ?>
+
+

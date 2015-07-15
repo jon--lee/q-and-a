@@ -11,6 +11,12 @@ jQuery(document).ready(function(){
 		if(text != "") {
 			jQuery('#questionText').val('');
 			jQuery.post(plugindir+'/q-and-a/ask-question.php',{text:text,asker_id:asker_id,campaign_id:campaign_id,answerer_id:answerer_id,camp_url:camp_url},function(data){
+				if(data == 1) {
+					jQuery('#askQuestionModalContent').html('<div style="text-align: center;font-weight:bold;font-size:16px;">Your question has been sent to the campaign author!</div>');
+					
+				} else {
+					jQuery('#askQuestionModalContent').html('<div style="text-align: center;font-weight:bold;color:#900;font-size:16px;">Sorry! Your question cannot be sent at this time. Please try again later!</div>');
+				}
 			});
 		}
 	});

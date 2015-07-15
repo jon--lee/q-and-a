@@ -41,7 +41,7 @@ if($message_id){
 				<a class='close-reveal-modal' aria-label='Close'><i class='icon-remove-sign'></i></a>
 
 				<p>
-					<a id='submitAnswer' class='button button-small' href='#' data-reveal-id='answerQuestionModal'>Send</a>
+					<a id='submitAnswer' class='button button-small' data-reveal-id='answerQuestionModal'>Send</a>
 					<a class='button button-small' href='#' data-reveal-id='answerQuestionModal'>Cancel</a>
 				</p>
 			</div>
@@ -86,9 +86,13 @@ $answered_questions_count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix
 					$question = nl2br(stripslashes($q->question));
 					$qid = $q->id;
 					$asker_id = $q->asker_id;
+					$answerer_id = $q->answerer_id;
+
+					$answererinfo = get_userdata($answerer_id);
 					$askerinfo = get_userdata($asker_id);
 					$answer =	nl2br(stripslashes($q->answer));
 					$asker_link = "../../members/$askerinfo->user_nicename";
+					$answerer_link = "../../members/$answererinfo->user_nicename";
 
 					echo "
 						<div class='quest'>
@@ -97,6 +101,9 @@ $answered_questions_count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix
 								<br>
 								<span class='qaa-all'>
 									<span class='quest-text' quest-id='$qid' collapsed='0'><strong>Q:</strong> $question</span>
+									<br>
+									<a href='$answerer_link'><div class='avatar'>".get_avatar($answerer_id,'25')."</div></a>
+									<a href='$answerer_link'><strong>$answererinfo->user_nicename</strong></a>
 									<br>
 									<span class='answer-text' quest-id='$qid' collapsed='0'><strong>A:</strong> $answer</span>
 								</span>
@@ -169,7 +176,11 @@ $answered_questions_count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix
 
 	<?php if(get_current_user_id()){ ?>	
 	<div class='suggest-idea'>
-		<a href='imagebutton' href='#' data-reveal-id='askQuestionModal'>Ask a Question (placeholder)</a>
+		<a href='imagebutton' href='#' data-reveal-id='askQuestionModal'>
+			<img src='<?php echo plugins_url();?>/q-and-a/images/AskAQuestion_n.png' 
+			onmouseover="this.src='<?php echo plugins_url();?>/q-and-a/images/AskAQuestion_s.png'" 
+			onmouseout="this.src='<?php echo plugins_url();?>/q-and-a/images/AskAQuestion_n.png'" />
+		</a>
 	</div>
 	<?php } ?>
 
@@ -193,19 +204,21 @@ $answered_questions_count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix
 
 <div id='askQuestionModal' class='reveal-modal campaign-form content-block' data-reveal aria-labelledby='askQuestionModal' aria-hidden='true' role='dialog'>
 	<div class='title-wrapper'><h2 class='block-title'>Ask a Question</h2></div>
+	<div id='askQuestionModalContent'>
+		<div class="row ">
+			<div class="large-12 columns">
+		    	<textarea placeholder="What is your question?" id="questionText"></textarea>
+		 	</div>
+		</div>
 
-	<div class="row ">
-		<div class="large-12 columns">
-	    	<textarea placeholder="What is your question?" id="questionText"></textarea>
-	 	</div>
+		<a class="close-reveal-modal" aria-label="Close"><i class="icon-remove-sign"></i></a>
+
+		<p>
+			<a id="submitQuestion" class="button button-small">Send</a>
+			<a class="button button-small" href="#" data-reveal-id="askQuestionModal">Cancel</a>
+		</p>
 	</div>
-
 	<a class="close-reveal-modal" aria-label="Close"><i class="icon-remove-sign"></i></a>
-
-	<p>
-		<a id="submitQuestion" class="button button-small" href="#" data-reveal-id="askQuestionModal">Send</a>
-		<a class="button button-small" href="#" data-reveal-id="askQuestionModal">Cancel</a>
-	</p>
 </div>
 
 
